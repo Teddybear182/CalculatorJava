@@ -32,6 +32,9 @@ public class Calculator {
             else if(part.equals("/")){
                 tokens.add(new Token(TokenType.OPERATOR, "/"));
             }
+            else if(part.equals("%")){
+                tokens.add(new Token(TokenType.OPERATOR, "%"));
+            }
             else if (isNumber(parts[pos])){
                 tokens.add(new Token(TokenType.NUMBER, parts[pos]));
             }
@@ -60,8 +63,8 @@ public class Calculator {
                 stack.push(Double.parseDouble(token.value));
             }
             else if (token.type==TokenType.OPERATOR){
-                double a = stack.pop();
                 double b = stack.pop();
+                double a = stack.pop();
                 String operator = token.value;
                 double result = switch (operator) {
                     case "+" -> a + b;
